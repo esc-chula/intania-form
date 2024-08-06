@@ -1,4 +1,4 @@
-# Contributing Guide to ESC-UI
+# Contributing Guide to Intania Form
 
 ## Prerequisites
 
