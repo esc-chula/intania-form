@@ -1,3 +1,18 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  :root {
+    --esc-carmine-50: 354.5 31.4% 93.1%;
+    --esc-carmine-100: 354.3 29.6% 86.1%;
+    --esc-carmine-200: 354.3 29.6% 72.2%;
+    --esc-carmine-300: 354.3 29.6% 58.2%;
+    --esc-carmine-400: 354.3 37.2% 44.3%;
+    --esc-carmine-500: 354.3 67.7% 30.4%;
+    --esc-carmine-600: 354.3 67.7% 24.3%;
+    --esc-carmine-700: 354.3 67.7% 18.2%;
+    --esc-carmine-800: 354.3 67.7% 12.2%;
+    --esc-carmine-900: 354.3 67.7% 6.1%;
+  }
+}
