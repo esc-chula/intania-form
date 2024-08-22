@@ -1,6 +1,5 @@
 import FormProvider from '@/providers/form-provider'
 import { Form } from '@/types/form'
-import { Metadata } from 'next'
 
 const getForm = async (id: string): Promise<Form> => {
   const response = await fetch(
@@ -11,20 +10,6 @@ const getForm = async (id: string): Promise<Form> => {
   )
 
   return response.json()
-}
-
-export async function generateMetadata({
-  params: { id },
-}: {
-  params: { id: string }
-}): Promise<Metadata> {
-  const form = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/form/api?id=${id}`
-  ).then((res) => res.json())
-
-  return {
-    title: form.heading,
-  }
 }
 
 export default async function FormLayout({
