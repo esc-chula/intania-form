@@ -37,6 +37,7 @@ export default function FormProvider({
           next: { revalidate: 60 },
         }
       )
+
       const data = await response.json()
       setForm(data)
     }
