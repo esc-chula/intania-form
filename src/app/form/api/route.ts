@@ -14,6 +14,7 @@ const getFormSchema = async (id: string): Promise<Form> => {
       next: { revalidate: 60 },
     }
   )
+
   const data = await response.json()
   data.columns = data.columns.filter((column: { show: number }) => column.show)
   data.columns = await Promise.all(
@@ -53,8 +54,8 @@ export async function GET(request: Request) {
   if (!id) {
     return Response.json({ error: 'ID not provided' }, { status: 400 })
   }
-  const form = await getFormSchema(id)
 
+  const form = await getFormSchema(id)
   return Response.json(form)
 }
 
