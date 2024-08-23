@@ -67,8 +67,13 @@ export async function POST(request: Request) {
   }
 
   const body = await request.json()
-
   const tableID = (await getNocoID(id)).TableID
+
+  // return if any field is ""
+  if (Object.values(body).some((value) => value === '')) {
+    return Response.json({ error: 'Missing Field' }, { status: 400 })
+  }
+
   const response = await fetch(
     `${process.env.NOCODB_BASE_URL}/api/v2/tables/${tableID}/records`,
     {
@@ -80,8 +85,10 @@ export async function POST(request: Request) {
       body: JSON.stringify(body),
     }
   )
+
   if (!response.ok) {
-    return Response.json(await response.json(), { status: response.status })
+    const errorMsg = await response.json()
+    return Response.json({ error: errorMsg.msg }, { status: response.status })
   }
 
   return Response.json(await response.json())

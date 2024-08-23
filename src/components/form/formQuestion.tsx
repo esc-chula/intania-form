@@ -26,6 +26,14 @@ export function FormQuestion({ column }: { column: FormColumn }) {
           className='flex w-full rounded-md border border-neutral-200 px-2 py-1'
         />
       ) : null}
+      {UIDataType[column.uidt] === UIDataType.Number ? (
+        <input
+          type='number'
+          name={column.columnName}
+          required={column.required}
+          className='flex w-full rounded-md border border-neutral-200 px-2 py-1'
+        />
+      ) : null}
       {UIDataType[column.uidt] === UIDataType.Checkbox ? (
         <div className='flex flex-row space-x-3'>
           <input
