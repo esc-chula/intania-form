@@ -17,15 +17,25 @@ export default function Page({ params: { id } }: PageProps) {
     setID(id)
   }, [id, setID])
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     const formData = new FormData(e.currentTarget)
     const data = Object.fromEntries(formData.entries())
 
-    fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/form/api?id=${id}`, {
-      method: 'POST',
-      body: JSON.stringify(data),
-    })
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_BASE_URL}/form/api?id=${id}`,
+      {
+        method: 'POST',
+        body: JSON.stringify(data),
+      }
+    )
+
+    if (!response.ok) {
+      const errorData = await response.json()
+      alert(errorData.error)
+      return null
+    }
+    window.location.href = `${process.env.NEXT_PUBLIC_BASE_URL}/form/done`
   }
 
   return (
