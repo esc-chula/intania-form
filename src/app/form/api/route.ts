@@ -2,8 +2,12 @@ import { Form, FormColumn } from '@/types/form'
 
 import { getColumnDetail, getNocoID } from '@/lib/fetcher'
 
-const getFormSchema = async (id: string): Promise<Form> => {
-  const viewID = (await getNocoID(id)).FormViewID
+const getFormSchema = async (id: string): Promise<Form | Response> => {
+  const tableIdResponse = await getNocoID(id)
+  if (tableIdResponse == null) {
+    return Response.json({ error: 'No form in this name' }, { status: 400 })
+  }
+  const viewID = tableIdResponse.FormViewID
 
   const response = await fetch(
     `${process.env.NOCODB_BASE_URL}/api/v2/meta/forms/${viewID}`,
@@ -67,7 +71,11 @@ export async function POST(request: Request) {
   }
 
   const body = await request.json()
-  const tableID = (await getNocoID(id)).TableID
+  const tableIdResponse = await getNocoID(id)
+  if (tableIdResponse == null) {
+    return Response.json({ error: 'No form in this name' }, { status: 400 })
+  }
+  const tableID = tableIdResponse.TableID
 
   // return if any field is ""
   if (Object.values(body).some((value) => value === '')) {
