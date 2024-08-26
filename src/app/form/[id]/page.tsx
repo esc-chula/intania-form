@@ -3,8 +3,8 @@
 import { useForm } from '@/providers/form-provider'
 import { useEffect } from 'react'
 
-import { FormHeader } from '@/components/form/formHeader'
-import { FormQuestion } from '@/components/form/formQuestion'
+import { FormHeader } from '@/components/form/form-header'
+import { FormQuestion } from '@/components/form/form-question'
 
 interface PageProps {
   params: { id: string }
