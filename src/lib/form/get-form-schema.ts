@@ -1,8 +1,7 @@
 import { Form, FormColumn } from '@/types/form'
 
-import { getNocoID } from '@/lib/fetcher'
-
 import { getColumnDetail } from './get-column-detail'
+import { getNocoID } from './get-nocoID'
 
 export const getFormSchema = async (id: string): Promise<Form | Response> => {
   const tableIdResponse = await getNocoID(id)
