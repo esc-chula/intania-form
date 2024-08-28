@@ -1,6 +1,6 @@
-import { getNocoID } from '@/lib/fetcher'
 import { checkIdParams, checkMissingField } from '@/lib/form/check-form'
 import { getFormSchema } from '@/lib/form/get-form-schema'
+import { getNocoID } from '@/lib/form/get-nocoID'
 
 export async function GET(request: Request) {
   // checking id
