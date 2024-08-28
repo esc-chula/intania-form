@@ -1,6 +1,6 @@
 'use client'
 
-import { Form } from '@/types/form'
+import type { Form } from '@/types/form'
 import { createContext, useContext, useEffect, useState } from 'react'
 
 interface FormContextType {
