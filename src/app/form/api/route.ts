@@ -1,4 +1,5 @@
 import { getNocoID } from '@/lib/fetcher'
+import { checkIdParams, checkMissingField } from '@/lib/form/check-form'
 import { getFormSchema } from '@/lib/form/get-form-schema'
 
 export async function GET(request: Request) {
@@ -51,20 +52,4 @@ export async function POST(request: Request) {
     return Response.json({ error: errorMsg.msg }, { status: response.status })
   }
   return Response.json(await response.json())
-}
-
-const checkIdParams = (request: Request) => {
-  const { searchParams } = new URL(request.url)
-  const id = searchParams.get('id')
-  if (!id) {
-    return null
-  }
-  return id
-}
-
-const checkMissingField = async (body: Promise<Response>) => {
-  if (Object.values(body).some((value) => value === '')) {
-    return true
-  }
-  return false
 }
