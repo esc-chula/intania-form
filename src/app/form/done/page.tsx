@@ -1,5 +1,3 @@
-'use client'
-
 export default function Page() {
   return (
     <div className='flex w-full flex-col gap-5 rounded-box border-2 p-10'>
