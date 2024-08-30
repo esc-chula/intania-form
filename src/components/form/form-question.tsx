@@ -6,7 +6,7 @@ export function FormQuestion({ column }: { column: FormColumn }) {
     <>
       <div className='flex flex-col'>
         <h3 className='text-lg'>{column.label}</h3>
-        <p className='text-gray-400'>{column.description}</p>
+        <p className='text-gray-600'>{column.description}</p>
       </div>
       {UIDataType[column.uidt] === UIDataType.SingleLineText ? (
         <input
@@ -14,6 +14,7 @@ export function FormQuestion({ column }: { column: FormColumn }) {
           name={column.columnName}
           required={column.required}
           className='flex w-full rounded-md border border-neutral-200 px-2 py-1'
+          placeholder='คำตอบ'
         />
       ) : null}
       {UIDataType[column.uidt] === UIDataType.PhoneNumber ? (
@@ -22,6 +23,7 @@ export function FormQuestion({ column }: { column: FormColumn }) {
           name={column.columnName}
           required={column.required}
           className='flex w-full rounded-md border border-neutral-200 px-2 py-1'
+          placeholder='คำตอบ'
         />
       ) : null}
       {UIDataType[column.uidt] === UIDataType.Number ? (
@@ -30,6 +32,7 @@ export function FormQuestion({ column }: { column: FormColumn }) {
           name={column.columnName}
           required={column.required}
           className='flex w-full rounded-md border border-neutral-200 px-2 py-1'
+          placeholder='คำตอบ'
         />
       ) : null}
       {UIDataType[column.uidt] === UIDataType.Checkbox ? (
