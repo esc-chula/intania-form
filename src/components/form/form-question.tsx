@@ -6,9 +6,7 @@ export function FormQuestion({ column }: { column: FormColumn }) {
     <>
       <div className='flex flex-col'>
         <h3 className='text-lg'>{column.label}</h3>
-        {UIDataType[column.uidt] != UIDataType.Checkbox && (
-          <p className='text-gray-400'>{column.description}</p>
-        )}
+        <p className='text-gray-400'>{column.description}</p>
       </div>
       {UIDataType[column.uidt] === UIDataType.SingleLineText ? (
         <input
@@ -35,14 +33,14 @@ export function FormQuestion({ column }: { column: FormColumn }) {
         />
       ) : null}
       {UIDataType[column.uidt] === UIDataType.Checkbox ? (
-        <div className='flex flex-row space-x-3'>
+        <label className='flex cursor-pointer select-none flex-row items-center justify-center space-x-3'>
           <input
             type='checkbox'
             name={column.columnName}
             required={column.required}
           />
-          <p className='text-gray-400'>{column.description}</p>
-        </div>
+          <p className='text-black'>ยอมรับ</p>
+        </label>
       ) : null}
       {UIDataType[column.uidt] === UIDataType.SingleSelect ? (
         <select
