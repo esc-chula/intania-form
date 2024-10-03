@@ -3,6 +3,8 @@ import { UIDataType } from '@/types/ui-data'
 import { FormEvent } from 'react'
 import toast from 'react-hot-toast'
 
+import { Input } from '../input'
+
 export function FormQuestion({ column }: { column: FormColumn }) {
   return (
     <div className='flex w-full flex-col items-start justify-start gap-2.5'>
@@ -16,64 +18,28 @@ export function FormQuestion({ column }: { column: FormColumn }) {
         </p>
       </div>
       {UIDataType[column.uidt] === UIDataType.SingleLineText ? (
-        <div className='flex w-full flex-col'>
-          <input
-            type='text'
-            name={column.columnName}
-            required={column.required}
-            className='flex w-full rounded-md border border-neutral-200 px-2 py-1'
-            placeholder='คำตอบ'
-            onInvalid={(e) => {
-              handleOnInvalid(e)
-            }}
-            onInput={(e) => {
-              handleOnInput(e)
-            }}
-          />
-          <p className='my-2 hidden w-full text-sm italic text-red-600'>
-            จำเป็นต้องตอบคำถามนี้
-          </p>
-        </div>
+        <Input
+          type='text'
+          name={column.columnName}
+          required={column.required}
+          placeholder={'คำตอบ'}
+        />
       ) : null}
       {UIDataType[column.uidt] === UIDataType.PhoneNumber ? (
-        <div className='flex w-full flex-col'>
-          <input
-            type='tel'
-            name={column.columnName}
-            required={column.required}
-            className='flex w-full rounded-md border border-neutral-200 px-2 py-1'
-            placeholder='คำตอบ'
-            onInvalid={(e) => {
-              handleOnInvalid(e)
-            }}
-            onInput={(e) => {
-              handleOnInput(e)
-            }}
-          />
-          <p className='my-2 hidden w-full text-sm italic text-red-600'>
-            จำเป็นต้องตอบคำถามนี้
-          </p>
-        </div>
+        <Input
+          type='tel'
+          name={column.columnName}
+          required={column.required}
+          placeholder='คำตอบ'
+        />
       ) : null}
       {UIDataType[column.uidt] === UIDataType.Number ? (
-        <div className='flex w-full flex-col'>
-          <input
-            type='number'
-            name={column.columnName}
-            required={column.required}
-            className='flex w-full rounded-md border border-neutral-200 px-2 py-1'
-            placeholder='คำตอบ'
-            onInvalid={(e) => {
-              handleOnInvalid(e)
-            }}
-            onInput={(e) => {
-              handleOnInput(e)
-            }}
-          />
-          <p className='my-2 hidden w-full text-sm italic text-red-600'>
-            จำเป็นต้องตอบคำถามนี้
-          </p>
-        </div>
+        <Input
+          type='number'
+          name={column.columnName}
+          required={column.required}
+          placeholder='คำตอบ'
+        />
       ) : null}
       {UIDataType[column.uidt] === UIDataType.Checkbox ? (
         <div className='flex w-full flex-col items-start justify-start'>
@@ -163,8 +129,6 @@ const handleOnInvalid = (
     selectElement.nextElementSibling?.classList.remove('hidden')
     toast.error('กรุณากรอกคำตอบให้ครบ', { id: 'invalid' })
   }
-  // ;(e.target as HTMLInputElement).nextElementSibling?.classList.remove('hidden')
-  // toast.error('กรุณากรอกคำตอบให้ครบ', { id: 'invalid' })
 }
 
 const handleOnInput = (
