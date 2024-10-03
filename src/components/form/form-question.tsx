@@ -124,38 +124,6 @@ export function FormQuestion({ column }: { column: FormColumn }) {
           </p>
         </div>
       ) : null}
-      {UIDataType[column.uidt] === UIDataType.LongText ? (
-        <div className='flex w-full flex-col'>
-          <textarea
-            name={column.columnName}
-            required={column.required}
-            className='flex h-20 w-full resize-none overflow-y-scroll rounded-md border border-neutral-200 px-2 py-1 text-body-1'
-            onInvalid={(e) => {
-              handleOnInvalid(e)
-            }}
-            onInput={(e) => {
-              handleOnInput(e)
-            }}
-          />
-          <p className='my-2 hidden w-full text-body-2 italic text-red-600'>
-            จำเป็นต้องตอบคำถามนี้
-          </p>
-        </div>
-      ) : null}
-      {UIDataType[column.uidt] === UIDataType.LongText ? (
-        <textarea
-          name={column.columnName}
-          required={column.required}
-          className='flex h-20 w-full resize-none overflow-y-scroll rounded-md border border-neutral-200 px-2 py-1'
-        />
-      ) : null}
-      {UIDataType[column.uidt] === UIDataType.LongText ? (
-        <textarea
-          name={column.columnName}
-          required={column.required}
-          className='flex h-20 w-full resize-none overflow-y-scroll rounded-md border border-neutral-200 px-2 py-1'
-        />
-      ) : null}
     </div>
   )
 }
