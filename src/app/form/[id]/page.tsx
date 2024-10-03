@@ -3,7 +3,6 @@
 import { useForm } from '@/providers/form-provider'
 import { useEffect } from 'react'
 import { Toaster, toast } from 'react-hot-toast'
-import { Toaster, toast } from 'react-hot-toast'
 
 import { FormContainer } from '@/components/form/form-container'
 import { FormHeader } from '@/components/form/form-header'
