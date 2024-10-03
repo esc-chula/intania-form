@@ -18,6 +18,7 @@ export const getColumnDetail = async (
     }
   )
   const data = await response.json()
+
   return {
     label: data.title,
     uidt: data.uidt,

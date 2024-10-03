@@ -6,10 +6,3 @@ export const checkIdParams = (request: Request) => {
   }
   return id
 }
-
-export const checkMissingField = async (body: Promise<Response>) => {
-  if (Object.values(body).some((value) => value === '')) {
-    return true
-  }
-  return false
-}
