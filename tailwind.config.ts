@@ -18,9 +18,6 @@ const config: Config = {
         inter: ['var(--font-inter)', ...fontFamily.sans],
         thai: ['var(--font-ibm-plex-sans-thai)', ...fontFamily.sans],
       },
-      borderRadius: {
-        box: '2rem',
-      },
       colors: {
         carmine: {
           50: 'hsl(var(--esc-carmine-50))',
@@ -38,8 +35,36 @@ const config: Config = {
           DEFAULT: 'hsl(var(--esc-carmine-500))',
         },
       },
+      borderWidth: {
+        default: '2px',
+      },
+      borderColor: {
+        default: '#EFEFEF',
+      },
+      borderRadius: {
+        box: '2rem',
+      },
+      boxShadow: {
+        default: '0px 4px 40px 0px rgba(0, 0, 0, 0.05)',
+      },
+      fontSize: {
+        header: [
+          '36px',
+          {
+            fontWeight: '700',
+            lineHeight: '48px',
+          },
+        ],
+        title1: '24px',
+        title2: '20px',
+        subtitle: '18px',
+        body: '16px',
+        detail: '14px',
+        smallest: '12px',
+      },
     },
   },
   plugins: [tailwindcssAnimate],
 }
+
 export default config
