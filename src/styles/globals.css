@@ -17,9 +17,6 @@
   }
 }
 
-.custom-shadow {
-  box-shadow: 0px 4px 40px rgba(0, 0, 0, 0.05);
-}
 .bg-svg-pattern {
   background-image: url('/bg.svg');
   background-repeat: repeat;
