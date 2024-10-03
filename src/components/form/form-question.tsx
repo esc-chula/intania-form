@@ -5,8 +5,12 @@ export function FormQuestion({ column }: { column: FormColumn }) {
   return (
     <>
       <div className='flex flex-col'>
-        <h3 className='text-lg'>{column.label}</h3>
-        <p className='text-gray-600'>{column.description}</p>
+        <h3 className='text-title2 font-bold text-neutral-900'>
+          {column.label}
+        </h3>
+        <p className='text-subtitle font-normal text-gray-600'>
+          {column.description}
+        </p>
       </div>
       {UIDataType[column.uidt] === UIDataType.SingleLineText ? (
         <input

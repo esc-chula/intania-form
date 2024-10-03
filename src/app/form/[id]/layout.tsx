@@ -6,7 +6,7 @@ export default async function FormLayout({
   children: React.ReactNode
 }>) {
   return (
-    <div className='mx-auto flex w-full max-w-3xl flex-col items-center justify-center gap-8 py-8'>
+    <div className='flex size-full flex-col items-center justify-start gap-8 px-5 py-8'>
       <FormProvider>{children}</FormProvider>
     </div>
   )
