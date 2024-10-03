@@ -16,3 +16,7 @@
     --esc-carmine-900: 354.3 67.7% 6.1%;
   }
 }
+
+.custom-shadow {
+  box-shadow: 0px 4px 40px rgba(0, 0, 0, 0.05);
+}

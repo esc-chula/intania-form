@@ -5,7 +5,11 @@ export function FormQuestion({ column }: { column: FormColumn }) {
   return (
     <>
       <div className='flex flex-col'>
-        <h3 className='text-lg'>{column.label}</h3>
+        <h3 className='text-lg font-bold'>
+          {column.label}
+          {column.required}
+          {column.required ? <span className='text-red-500'> *</span> : null}
+        </h3>
         <p className='text-gray-600'>{column.description}</p>
       </div>
       {UIDataType[column.uidt] === UIDataType.SingleLineText ? (

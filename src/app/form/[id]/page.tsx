@@ -43,7 +43,7 @@ export default function Page({ params: { id } }: PageProps) {
       <FormHeader form={form} />
       <form
         onSubmit={handleSubmit}
-        className='flex size-full flex-col gap-14 rounded-box border-2 p-10'
+        className='custom-shadow flex size-full flex-col gap-14 rounded-box border-2 p-10'
       >
         {form.columns.map((column) => (
           <div
