@@ -44,7 +44,7 @@ export default function Page({ params: { id } }: PageProps) {
   }
 
   return (
-    <>
+    <div>
       <FormHeader form={form} />
       <FormContainer>
         <form
@@ -74,6 +74,6 @@ export default function Page({ params: { id } }: PageProps) {
           </div>
         </form>
       </FormContainer>
-    </>
+    </div>
   )
 }

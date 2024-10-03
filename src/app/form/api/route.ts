@@ -1,4 +1,4 @@
-import { checkIdParams, checkMissingField } from '@/lib/form/check-form'
+import { checkIdParams } from '@/lib/form/check-form'
 import { getFormSchema } from '@/lib/form/get-form-schema'
 import { getNocoID } from '@/lib/form/get-nocoID'
 
@@ -22,10 +22,6 @@ export async function POST(request: Request) {
   }
 
   const body = await request.json()
-  const isMissingField = await checkMissingField(body)
-  if (isMissingField) {
-    return Response.json({ error: 'Missing Field' }, { status: 400 })
-  }
 
   const tableIdResponse = await getNocoID(id)
   if (tableIdResponse === null) {
