@@ -10,7 +10,7 @@ export function FormQuestion({ column }: { column: FormColumn }) {
           {column.required}
           {column.required ? <span className='text-red-500'> *</span> : null}
         </h3>
-        <p className='text-subtitle font-normal text-gray-600'>
+        <p className='text-subtitle font-light text-gray-600'>
           {column.description}
         </p>
       </div>
@@ -63,6 +63,13 @@ export function FormQuestion({ column }: { column: FormColumn }) {
             </option>
           ))}
         </select>
+      ) : null}
+      {UIDataType[column.uidt] === UIDataType.LongText ? (
+        <textarea
+          name={column.columnName}
+          required={column.required}
+          className='flex h-20 w-full resize-none overflow-y-scroll rounded-md border border-neutral-200 px-2 py-1'
+        />
       ) : null}
     </div>
   )
