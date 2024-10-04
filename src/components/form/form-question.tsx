@@ -117,11 +117,27 @@ export function FormQuestion({ column }: { column: FormColumn }) {
         </div>
       ) : null}
       {UIDataType[column.uidt] === UIDataType.LongText ? (
-        <textarea
-          name={column.columnName}
-          required={column.required}
-          className='flex h-20 w-full resize-none overflow-y-scroll rounded-md border border-neutral-200 px-2 py-1'
-        />
+        <div className='flex w-full flex-col'>
+          <textarea
+            name={column.columnName}
+            required={column.required}
+            className='flex h-20 w-full resize-none overflow-y-scroll rounded-md border border-neutral-200 px-2 py-1'
+            onInvalid={(e) => {
+              e.preventDefault()
+              ;(
+                e.target as HTMLInputElement
+              ).nextElementSibling?.classList.remove('hidden')
+            }}
+            onInput={(e) => {
+              ;(e.target as HTMLInputElement).nextElementSibling?.classList.add(
+                'hidden'
+              )
+            }}
+          />
+          <p className='my-2 hidden w-full text-sm italic text-red-600'>
+            จำเป็นต้องตอบคำถามนี้
+          </p>
+        </div>
       ) : null}
     </div>
   )
