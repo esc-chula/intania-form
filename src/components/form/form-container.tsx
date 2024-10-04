@@ -9,7 +9,7 @@ export function FormContainer({
 }) {
   return (
     <div
-      className={`flex w-full max-w-3xl flex-col gap-5 rounded-box border-default bg-white p-10 shadow-default ${className}`}
+      className={`mb-10 flex w-full max-w-3xl flex-col gap-5 rounded-box border-default bg-white p-10 shadow-default ${className}`}
     >
       {children}
     </div>
