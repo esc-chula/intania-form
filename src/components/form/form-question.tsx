@@ -116,6 +116,13 @@ export function FormQuestion({ column }: { column: FormColumn }) {
           </p>
         </div>
       ) : null}
+      {UIDataType[column.uidt] === UIDataType.LongText ? (
+        <textarea
+          name={column.columnName}
+          required={column.required}
+          className='flex h-20 w-full resize-none overflow-y-scroll rounded-md border border-neutral-200 px-2 py-1'
+        />
+      ) : null}
     </div>
   )
 }
