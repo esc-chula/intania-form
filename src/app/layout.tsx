@@ -29,7 +29,7 @@ export default function RootLayout({
     <html lang='en'>
       <body
         className={cn(
-          'min-h-screen font-sans antialiased',
+          'bg-svg-pattern min-h-screen font-sans antialiased',
           inter.variable,
           ibmPlexSansThai.variable
         )}
