@@ -7,6 +7,7 @@ export const getColumnDetail = async (
   uidt: keyof typeof UIDataType
   columnName: string
   colOptions?: string[]
+  required: boolean
 }> => {
   const response = await fetch(
     `${process.env.NOCODB_BASE_URL}/api/v2/meta/columns/${columnID}`,
@@ -18,6 +19,8 @@ export const getColumnDetail = async (
     }
   )
   const data = await response.json()
+  console.log(data)
+
   return {
     label: data.title,
     uidt: data.uidt,
@@ -25,5 +28,6 @@ export const getColumnDetail = async (
     colOptions: data.colOptions?.options.map(
       (option: { title: string }) => option.title
     ),
+    required: data.pv === null ? false : true,
   }
 }
