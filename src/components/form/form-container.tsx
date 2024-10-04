@@ -1,4 +1,4 @@
-import React from 'react'
+import { cn } from '@/lib/utils'
 
 export function FormContainer({
   children,
@@ -9,7 +9,10 @@ export function FormContainer({
 }) {
   return (
     <div
-      className={`flex w-full max-w-3xl flex-col gap-5 rounded-box border-default bg-white p-10 shadow-default ${className}`}
+      className={cn(
+        'flex w-full max-w-3xl flex-col gap-5 rounded-box border-default bg-white p-10 shadow-default',
+        className
+      )}
     >
       {children}
     </div>
