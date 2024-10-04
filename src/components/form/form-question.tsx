@@ -1,5 +1,6 @@
 import { FormColumn } from '@/types/form'
 import { UIDataType } from '@/types/ui-data'
+import { FormEvent } from 'react'
 import toast from 'react-hot-toast'
 
 import { Input } from '@/components/input'
@@ -19,25 +20,25 @@ export function FormQuestion({ column }: { column: FormColumn }) {
       {UIDataType[column.uidt] === UIDataType.SingleLineText ? (
         <Input
           type='text'
+          id={column.columnName}
           name={column.columnName}
           required={column.required}
-          placeholder={'คำตอบ'}
         />
       ) : null}
       {UIDataType[column.uidt] === UIDataType.PhoneNumber ? (
         <Input
           type='tel'
+          id={column.columnName}
           name={column.columnName}
           required={column.required}
-          placeholder='คำตอบ'
         />
       ) : null}
       {UIDataType[column.uidt] === UIDataType.Number ? (
         <Input
           type='number'
+          id={column.columnName}
           name={column.columnName}
           required={column.required}
-          placeholder='คำตอบ'
         />
       ) : null}
       {UIDataType[column.uidt] === UIDataType.Checkbox ? (
@@ -75,16 +76,10 @@ export function FormQuestion({ column }: { column: FormColumn }) {
             className='flex h-10 w-full rounded-md border border-neutral-200 px-2 py-1'
             defaultValue=''
             onInvalid={(e) => {
-              e.preventDefault()
-              ;(
-                e.target as HTMLInputElement
-              ).nextElementSibling?.classList.remove('hidden')
-              toast.error('กรุณากรอกคำตอบให้ครบ', { id: 'invalid' })
+              handleOnInvalid(e)
             }}
             onInput={(e) => {
-              ;(e.target as HTMLInputElement).nextElementSibling?.classList.add(
-                'hidden'
-              )
+              handleOnInput(e)
             }}
           >
             <option disabled value=''>
@@ -108,16 +103,10 @@ export function FormQuestion({ column }: { column: FormColumn }) {
             required={column.required}
             className='flex h-20 w-full resize-none overflow-y-scroll rounded-md border border-neutral-200 px-2 py-1'
             onInvalid={(e) => {
-              e.preventDefault()
-              ;(
-                e.target as HTMLInputElement
-              ).nextElementSibling?.classList.remove('hidden')
-              toast.error('กรุณากรอกคำตอบให้ครบ', { id: 'invalid' })
+              handleOnInvalid(e)
             }}
             onInput={(e) => {
-              ;(e.target as HTMLInputElement).nextElementSibling?.classList.add(
-                'hidden'
-              )
+              handleOnInput(e)
             }}
           />
           <p className='my-2 hidden w-full text-sm italic text-red-600'>
@@ -132,15 +121,10 @@ export function FormQuestion({ column }: { column: FormColumn }) {
             required={column.required}
             className='flex h-20 w-full resize-none overflow-y-scroll rounded-md border border-neutral-200 px-2 py-1 text-body-1'
             onInvalid={(e) => {
-              e.preventDefault()
-              ;(
-                e.target as HTMLInputElement
-              ).nextElementSibling?.classList.remove('hidden')
+              handleOnInvalid(e)
             }}
             onInput={(e) => {
-              ;(e.target as HTMLInputElement).nextElementSibling?.classList.add(
-                'hidden'
-              )
+              handleOnInput(e)
             }}
           />
           <p className='my-2 hidden w-full text-body-2 italic text-red-600'>
@@ -148,6 +132,46 @@ export function FormQuestion({ column }: { column: FormColumn }) {
           </p>
         </div>
       ) : null}
+      {UIDataType[column.uidt] === UIDataType.LongText ? (
+        <textarea
+          name={column.columnName}
+          required={column.required}
+          className='flex h-20 w-full resize-none overflow-y-scroll rounded-md border border-neutral-200 px-2 py-1'
+        />
+      ) : null}
+      {UIDataType[column.uidt] === UIDataType.LongText ? (
+        <textarea
+          name={column.columnName}
+          required={column.required}
+          className='flex h-20 w-full resize-none overflow-y-scroll rounded-md border border-neutral-200 px-2 py-1'
+        />
+      ) : null}
     </div>
   )
+}
+
+const handleOnInvalid = (
+  e:
+    | FormEvent<HTMLInputElement>
+    | FormEvent<HTMLSelectElement>
+    | FormEvent<HTMLTextAreaElement>
+) => {
+  e.preventDefault()
+  const selectElement = e.target as HTMLSelectElement
+  if (selectElement.value === '') {
+    selectElement.nextElementSibling?.classList.remove('hidden')
+    toast.error('กรุณากรอกคำตอบให้ครบ', { id: 'invalid' })
+  }
+  ;(e.target as HTMLInputElement).nextElementSibling?.classList.remove('hidden')
+  toast.error('กรุณากรอกคำตอบให้ครบ', { id: 'invalid' })
+}
+
+const handleOnInput = (
+  e:
+    | FormEvent<HTMLInputElement>
+    | FormEvent<HTMLSelectElement>
+    | FormEvent<HTMLTextAreaElement>
+) => {
+  e.preventDefault()
+  ;(e.target as HTMLInputElement).nextElementSibling?.classList.add('hidden')
 }
