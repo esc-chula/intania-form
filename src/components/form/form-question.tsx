@@ -1,5 +1,7 @@
 import { FormColumn } from '@/types/form'
 import { UIDataType } from '@/types/ui-data'
+import { FormEvent } from 'react'
+import toast from 'react-hot-toast'
 
 import { Input } from '@/components/input'
 
@@ -18,25 +20,28 @@ export function FormQuestion({ column }: { column: FormColumn }) {
       {UIDataType[column.uidt] === UIDataType.SingleLineText ? (
         <Input
           type='text'
+          id={column.columnName}
           name={column.columnName}
+          error={false}
           required={column.required}
-          placeholder={'คำตอบ'}
         />
       ) : null}
       {UIDataType[column.uidt] === UIDataType.PhoneNumber ? (
         <Input
           type='tel'
+          id={column.columnName}
           name={column.columnName}
+          error={false}
           required={column.required}
-          placeholder='คำตอบ'
         />
       ) : null}
       {UIDataType[column.uidt] === UIDataType.Number ? (
         <Input
           type='number'
+          id={column.columnName}
           name={column.columnName}
+          error={false}
           required={column.required}
-          placeholder='คำตอบ'
         />
       ) : null}
       {UIDataType[column.uidt] === UIDataType.Checkbox ? (
@@ -66,17 +71,32 @@ export function FormQuestion({ column }: { column: FormColumn }) {
         </div>
       ) : null}
       {UIDataType[column.uidt] === UIDataType.SingleSelect ? (
-        <select
-          name={column.columnName}
-          required={column.required}
-          className='flex w-full rounded-md border border-neutral-200 px-2 py-1'
-        >
-          {column.colOptions?.map((option) => (
-            <option key={option} value={option}>
-              {option}
+        <div className='relative flex w-full'>
+          <select
+            name={column.columnName}
+            required={column.required}
+            className='flex h-10 w-full rounded-md border border-neutral-200 px-2 py-1'
+            defaultValue=''
+            onInvalid={(e) => {
+              handleOnInvalid(e)
+            }}
+            onInput={(e) => {
+              handleOnInput(e)
+            }}
+          >
+            <option disabled value=''>
+              -- select an option --
             </option>
-          ))}
-        </select>
+            {column.colOptions?.map((option) => (
+              <option key={option} value={option}>
+                {option}
+              </option>
+            ))}
+          </select>
+          <p className='absolute -bottom-8 my-2 hidden w-full text-sm italic text-red-600'>
+            จำเป็นต้องเลือก
+          </p>
+        </div>
       ) : null}
       {UIDataType[column.uidt] === UIDataType.LongText ? (
         <div className='flex w-full flex-col'>
@@ -85,15 +105,10 @@ export function FormQuestion({ column }: { column: FormColumn }) {
             required={column.required}
             className='flex h-20 w-full resize-none overflow-y-scroll rounded-md border border-neutral-200 px-2 py-1'
             onInvalid={(e) => {
-              e.preventDefault()
-              ;(
-                e.target as HTMLInputElement
-              ).nextElementSibling?.classList.remove('hidden')
+              handleOnInvalid(e)
             }}
             onInput={(e) => {
-              ;(e.target as HTMLInputElement).nextElementSibling?.classList.add(
-                'hidden'
-              )
+              handleOnInput(e)
             }}
           />
           <p className='my-2 hidden w-full text-sm italic text-red-600'>
@@ -101,6 +116,64 @@ export function FormQuestion({ column }: { column: FormColumn }) {
           </p>
         </div>
       ) : null}
+      {UIDataType[column.uidt] === UIDataType.LongText ? (
+        <div className='flex w-full flex-col'>
+          <textarea
+            name={column.columnName}
+            required={column.required}
+            className='flex h-20 w-full resize-none overflow-y-scroll rounded-md border border-neutral-200 px-2 py-1'
+            onInvalid={(e) => {
+              handleOnInvalid(e)
+            }}
+            onInput={(e) => {
+              handleOnInput(e)
+            }}
+          />
+          <p className='my-2 hidden w-full text-sm italic text-red-600'>
+            จำเป็นต้องตอบคำถามนี้
+          </p>
+        </div>
+      ) : null}
+      {UIDataType[column.uidt] === UIDataType.LongText ? (
+        <textarea
+          name={column.columnName}
+          required={column.required}
+          className='flex h-20 w-full resize-none overflow-y-scroll rounded-md border border-neutral-200 px-2 py-1'
+        />
+      ) : null}
+      {UIDataType[column.uidt] === UIDataType.LongText ? (
+        <textarea
+          name={column.columnName}
+          required={column.required}
+          className='flex h-20 w-full resize-none overflow-y-scroll rounded-md border border-neutral-200 px-2 py-1'
+        />
+      ) : null}
     </div>
   )
+}
+
+const handleOnInvalid = (
+  e:
+    | FormEvent<HTMLInputElement>
+    | FormEvent<HTMLSelectElement>
+    | FormEvent<HTMLTextAreaElement>
+) => {
+  e.preventDefault()
+  const selectElement = e.target as HTMLSelectElement
+  if (selectElement.value === '') {
+    selectElement.nextElementSibling?.classList.remove('hidden')
+    toast.error('กรุณากรอกคำตอบให้ครบ', { id: 'invalid' })
+  }
+  ;(e.target as HTMLInputElement).nextElementSibling?.classList.remove('hidden')
+  toast.error('กรุณากรอกคำตอบให้ครบ', { id: 'invalid' })
+}
+
+const handleOnInput = (
+  e:
+    | FormEvent<HTMLInputElement>
+    | FormEvent<HTMLSelectElement>
+    | FormEvent<HTMLTextAreaElement>
+) => {
+  e.preventDefault()
+  ;(e.target as HTMLInputElement).nextElementSibling?.classList.add('hidden')
 }
