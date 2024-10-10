@@ -24,6 +24,8 @@ export default function Page({ params: { id } }: PageProps) {
     const formData = new FormData(e.currentTarget)
     const data = Object.fromEntries(formData.entries())
 
+    console.log(data)
+
     const response = await fetch(
       `${process.env.NEXT_PUBLIC_BASE_URL}/form/api?id=${id}`,
       {
