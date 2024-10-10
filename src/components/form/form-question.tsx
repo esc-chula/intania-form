@@ -123,15 +123,10 @@ export function FormQuestion({ column }: { column: FormColumn }) {
             required={column.required}
             className='flex h-20 w-full resize-none overflow-y-scroll rounded-md border border-neutral-200 px-2 py-1'
             onInvalid={(e) => {
-              e.preventDefault()
-              ;(
-                e.target as HTMLInputElement
-              ).nextElementSibling?.classList.remove('hidden')
+              handleOnInvalid(e)
             }}
             onInput={(e) => {
-              ;(e.target as HTMLInputElement).nextElementSibling?.classList.add(
-                'hidden'
-              )
+              handleOnInput(e)
             }}
           />
           <p className='my-2 hidden w-full text-sm italic text-red-600'>

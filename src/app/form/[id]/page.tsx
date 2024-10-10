@@ -36,8 +36,6 @@ export default function Page({ params: { id } }: PageProps) {
       const errorData = await response.json()
       toast.error(errorData.error)
       return
-      toast.error(errorData.error)
-      return
     }
     window.location.href = `${process.env.NEXT_PUBLIC_BASE_URL}/form/done`
   }
@@ -47,7 +45,7 @@ export default function Page({ params: { id } }: PageProps) {
   }
 
   return (
-    <div className='flex size-full flex-col items-center justify-start gap-8 px-5 py-8'>
+    <div>
       <Toaster position='top-center' reverseOrder={false} />
       <FormHeader form={form} />
       <FormContainer>
