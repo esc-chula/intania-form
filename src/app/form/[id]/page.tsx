@@ -24,8 +24,6 @@ export default function Page({ params: { id } }: PageProps) {
     const formData = new FormData(e.currentTarget)
     const data = Object.fromEntries(formData.entries())
 
-    console.log(data)
-
     const response = await fetch(
       `${process.env.NEXT_PUBLIC_BASE_URL}/form/api?id=${id}`,
       {
@@ -38,6 +36,8 @@ export default function Page({ params: { id } }: PageProps) {
       const errorData = await response.json()
       toast.error(errorData.error)
       return
+      toast.error(errorData.error)
+      return
     }
     window.location.href = `${process.env.NEXT_PUBLIC_BASE_URL}/form/done`
   }
@@ -47,7 +47,7 @@ export default function Page({ params: { id } }: PageProps) {
   }
 
   return (
-    <div>
+    <div className='flex size-full flex-col items-center justify-start gap-8 px-5 py-8'>
       <Toaster position='top-center' reverseOrder={false} />
       <FormHeader form={form} />
       <FormContainer>
