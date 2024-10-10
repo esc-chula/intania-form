@@ -1,6 +1,8 @@
 import { FormColumn } from '@/types/form'
 import { UIDataType } from '@/types/ui-data'
 
+import { Input } from '../input'
+
 export function FormQuestion({ column }: { column: FormColumn }) {
   return (
     <>
@@ -13,29 +15,26 @@ export function FormQuestion({ column }: { column: FormColumn }) {
         </p>
       </div>
       {UIDataType[column.uidt] === UIDataType.SingleLineText ? (
-        <input
+        <Input
           type='text'
           name={column.columnName}
           required={column.required}
-          className='flex w-full rounded-md border border-neutral-200 px-2 py-1'
-          placeholder='คำตอบ'
+          placeholder={'คำตอบ'}
         />
       ) : null}
       {UIDataType[column.uidt] === UIDataType.PhoneNumber ? (
-        <input
+        <Input
           type='tel'
           name={column.columnName}
           required={column.required}
-          className='flex w-full rounded-md border border-neutral-200 px-2 py-1'
           placeholder='คำตอบ'
         />
       ) : null}
       {UIDataType[column.uidt] === UIDataType.Number ? (
-        <input
+        <Input
           type='number'
           name={column.columnName}
           required={column.required}
-          className='flex w-full rounded-md border border-neutral-200 px-2 py-1'
           placeholder='คำตอบ'
         />
       ) : null}
