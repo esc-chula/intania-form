@@ -22,15 +22,21 @@ export const getFormSchema = async (id: string): Promise<Form | Response> => {
 
   const data = await response.json()
   data.columns = data.columns.filter((column: { show: number }) => column.show)
+
   data.columns = await Promise.all(
     data.columns.map(
-      async (column: { label: string | null; fk_column_id: string }) => {
+      async (column: {
+        label: string | null
+        required: boolean
+        fk_column_id: string
+      }) => {
         const columnData = await getColumnDetail(column.fk_column_id)
 
         return {
           ...column,
           ...columnData,
           label: column.label ?? columnData.label,
+          required: column.required,
         }
       }
     )

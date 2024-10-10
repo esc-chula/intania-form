@@ -5,10 +5,11 @@ import { Input } from '@/components/input'
 
 export function FormQuestion({ column }: { column: FormColumn }) {
   return (
-    <>
+    <div className='flex w-full flex-col items-start justify-start gap-2.5'>
       <div className='flex flex-col'>
         <h3 className='text-title2 font-bold text-neutral-900'>
           {column.label}
+          {column.required ? <span className='text-red-500'> *</span> : null}
         </h3>
         <p className='text-subtitle font-normal text-gray-600'>
           {column.description}
