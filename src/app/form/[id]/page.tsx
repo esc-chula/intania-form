@@ -2,6 +2,7 @@
 
 import { useForm } from '@/providers/form-provider'
 import { useEffect } from 'react'
+import { Toaster, toast } from 'react-hot-toast'
 
 import { FormContainer } from '@/components/form/form-container'
 import { FormHeader } from '@/components/form/form-header'
@@ -23,6 +24,8 @@ export default function Page({ params: { id } }: PageProps) {
     const formData = new FormData(e.currentTarget)
     const data = Object.fromEntries(formData.entries())
 
+    console.log(data)
+
     const response = await fetch(
       `${process.env.NEXT_PUBLIC_BASE_URL}/form/api?id=${id}`,
       {
@@ -33,8 +36,8 @@ export default function Page({ params: { id } }: PageProps) {
 
     if (!response.ok) {
       const errorData = await response.json()
-      alert(errorData.error)
-      return null
+      toast.error(errorData.error)
+      return
     }
     window.location.href = `${process.env.NEXT_PUBLIC_BASE_URL}/form/done`
   }
@@ -44,7 +47,8 @@ export default function Page({ params: { id } }: PageProps) {
   }
 
   return (
-    <>
+    <div>
+      <Toaster position='top-center' reverseOrder={false} />
       <FormHeader form={form} />
       <FormContainer>
         <form
@@ -74,6 +78,6 @@ export default function Page({ params: { id } }: PageProps) {
           </div>
         </form>
       </FormContainer>
-    </>
+    </div>
   )
 }
