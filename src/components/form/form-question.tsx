@@ -1,6 +1,7 @@
 import { FormColumn } from '@/types/form'
 import { UIDataType } from '@/types/ui-data'
-import { Input } from '@components/input'
+
+import { Input } from '@/components/input'
 
 export function FormQuestion({ column }: { column: FormColumn }) {
   return (
