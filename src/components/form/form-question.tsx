@@ -21,16 +21,23 @@ export function FormQuestion({ column }: { column: FormColumn }) {
           type='text'
           name={column.columnName}
           required={column.required}
+          placeholder={'คำตอบ'}
         />
       ) : null}
       {UIDataType[column.uidt] === UIDataType.PhoneNumber ? (
-        <Input type='tel' name={column.columnName} required={column.required} />
+        <Input
+          type='tel'
+          name={column.columnName}
+          required={column.required}
+          placeholder='คำตอบ'
+        />
       ) : null}
       {UIDataType[column.uidt] === UIDataType.Number ? (
         <Input
           type='number'
           name={column.columnName}
           required={column.required}
+          placeholder='คำตอบ'
         />
       ) : null}
       {UIDataType[column.uidt] === UIDataType.Checkbox ? (
