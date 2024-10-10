@@ -3,6 +3,7 @@
 import { useForm } from '@/providers/form-provider'
 import { useEffect } from 'react'
 import { Toaster, toast } from 'react-hot-toast'
+import { Toaster, toast } from 'react-hot-toast'
 
 import { FormContainer } from '@/components/form/form-container'
 import { FormHeader } from '@/components/form/form-header'
@@ -38,6 +39,8 @@ export default function Page({ params: { id } }: PageProps) {
       const errorData = await response.json()
       toast.error(errorData.error)
       return
+      toast.error(errorData.error)
+      return
     }
     window.location.href = `${process.env.NEXT_PUBLIC_BASE_URL}/form/done`
   }
@@ -47,39 +50,37 @@ export default function Page({ params: { id } }: PageProps) {
   }
 
   return (
-    <div>
+    <div className='flex size-full flex-col items-center justify-start gap-8 px-5 py-8'>
       <Toaster position='top-center' reverseOrder={false} />
-      <div className='flex size-full flex-col items-center justify-start gap-8 px-5 py-8'>
-        <FormHeader form={form} />
-        <FormContainer>
-          <form
-            onSubmit={handleSubmit}
-            onReset={handleReset}
-            className='flex flex-col gap-14'
-          >
-            {form.columns.map((column) => (
-              <div
-                key={column.order}
-                className='flex w-full flex-col items-start gap-2.5'
-              >
-                <FormQuestion column={column} />
-              </div>
-            ))}
-            <hr />
-            <div className='flex flex-row items-center justify-between'>
-              <button type='reset' className='text-body text-neutral-400'>
-                ล้างฟอร์ม
-              </button>
-              <button
-                type='submit'
-                className='size-fit rounded-[10px] bg-carmine-500 px-8 py-[10px] text-white'
-              >
-                ส่งคำตอบ
-              </button>
+      <FormHeader form={form} />
+      <FormContainer>
+        <form
+          onSubmit={handleSubmit}
+          onReset={handleReset}
+          className='flex flex-col gap-14'
+        >
+          {form.columns.map((column) => (
+            <div
+              key={column.order}
+              className='flex w-full flex-col items-start gap-2.5'
+            >
+              <FormQuestion column={column} />
             </div>
-          </form>
-        </FormContainer>
-      </div>
+          ))}
+          <hr />
+          <div className='flex flex-row items-center justify-between'>
+            <button type='reset' className='text-body text-neutral-400'>
+              ล้างฟอร์ม
+            </button>
+            <button
+              type='submit'
+              className='size-fit rounded-[10px] bg-carmine-500 px-8 py-[10px] text-white'
+            >
+              ส่งคำตอบ
+            </button>
+          </div>
+        </form>
+      </FormContainer>
     </div>
   )
 }
