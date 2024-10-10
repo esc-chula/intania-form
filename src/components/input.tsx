@@ -2,6 +2,22 @@
 
 import { cn } from '@/lib/utils'
 
+interface InputProps {
+  id?: string
+  name?: string
+  type: string
+  value?: string
+  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void
+  required?: boolean
+  pattern?: string
+  placeholder?: string
+  className?: string
+  disabled?: boolean
+  description?: string
+  error?: boolean
+  errorMessage?: string
+}
+
 export function Input({
   id,
   name,
@@ -16,21 +32,7 @@ export function Input({
   description,
   error,
   errorMessage,
-}: {
-  id?: string
-  name?: string
-  type: string
-  value?: string
-  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void
-  required?: boolean
-  pattern?: string
-  placeholder?: string
-  className?: string
-  disabled?: boolean
-  description?: string
-  error?: boolean
-  errorMessage?: string
-}) {
+}: InputProps) {
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (onChange) {
       onChange(event)
