@@ -107,6 +107,7 @@ export function FormQuestion({ column }: { column: FormColumn }) {
             name={column.columnName}
             required={column.required}
             className='flex h-10 w-full rounded-md border border-neutral-200 px-2 py-1'
+            defaultValue=''
             onInvalid={(e) => {
               handleOnInvalid(e)
             }}
@@ -114,7 +115,7 @@ export function FormQuestion({ column }: { column: FormColumn }) {
               handleOnInput(e)
             }}
           >
-            <option disabled selected>
+            <option disabled value=''>
               -- select an option --
             </option>
             {column.colOptions?.map((option) => (
@@ -157,8 +158,13 @@ const handleOnInvalid = (
     | FormEvent<HTMLTextAreaElement>
 ) => {
   e.preventDefault()
-  ;(e.target as HTMLInputElement).nextElementSibling?.classList.remove('hidden')
-  toast.error('กรุณากรอกคำตอบให้ครบ', { id: 'invalid' })
+  const selectElement = e.target as HTMLSelectElement
+  if (selectElement.value === '') {
+    selectElement.nextElementSibling?.classList.remove('hidden')
+    toast.error('กรุณากรอกคำตอบให้ครบ', { id: 'invalid' })
+  }
+  // ;(e.target as HTMLInputElement).nextElementSibling?.classList.remove('hidden')
+  // toast.error('กรุณากรอกคำตอบให้ครบ', { id: 'invalid' })
 }
 
 const handleOnInput = (
