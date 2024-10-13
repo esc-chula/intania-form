@@ -3,7 +3,7 @@ import { UIDataType } from '@/types/ui-data'
 import { FormEvent } from 'react'
 import toast from 'react-hot-toast'
 
-import { Input } from '../input'
+import { Input } from '@/components/input'
 
 export function FormQuestion({ column }: { column: FormColumn }) {
   return (
