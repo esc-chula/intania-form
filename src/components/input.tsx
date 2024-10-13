@@ -1,5 +1,8 @@
 'use client'
 
+import { useState } from 'react'
+import toast from 'react-hot-toast'
+
 import { cn } from '@/lib/utils'
 
 interface InputProps {
@@ -33,11 +36,14 @@ export function Input({
   error,
   errorMessage,
 }: InputProps) {
+  const [isValid, setIsValid] = useState(false)
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setIsValid(false)
     if (onChange) {
       onChange(event)
     }
   }
+
   return (
     <div className='flex w-full flex-col gap-1'>
       <input
@@ -49,6 +55,11 @@ export function Input({
         required={required}
         pattern={pattern}
         placeholder={placeholder || 'คำตอบ'}
+        onInvalid={(e) => {
+          e.preventDefault()
+          setIsValid(true)
+          toast.error('กรุณากรอกคำตอบให้ครบ', { id: 'invalid' })
+        }}
         className={cn(
           'flex w-full rounded-md border border-default px-2 py-1 outline-none transition-all duration-200 focus:border-none focus:ring-1 focus:ring-inset',
           {
@@ -67,6 +78,11 @@ export function Input({
       >
         {error ? errorMessage : description}
       </p>
+      {isValid && (
+        <p className='my-2 w-full text-sm italic text-red-600'>
+          จำเป็นต้องตอบคำถามนี้
+        </p>
+      )}
     </div>
   )
 }
