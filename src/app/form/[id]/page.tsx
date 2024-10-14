@@ -3,7 +3,6 @@
 import { useForm } from '@/providers/form-provider'
 import { useEffect } from 'react'
 import { Toaster, toast } from 'react-hot-toast'
-import { Toaster, toast } from 'react-hot-toast'
 
 import { FormContainer } from '@/components/form/form-container'
 import { FormHeader } from '@/components/form/form-header'
@@ -35,8 +34,6 @@ export default function Page({ params: { id } }: PageProps) {
 
     if (!response.ok) {
       const errorData = await response.json()
-      toast.error(errorData.error)
-      return
       toast.error(errorData.error)
       return
     }
