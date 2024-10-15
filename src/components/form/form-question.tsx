@@ -1,6 +1,8 @@
 import { FormColumn } from '@/types/form'
 import { UIDataType } from '@/types/ui-data'
 
+import { FileAttachment } from '../file-attachment'
+
 export function FormQuestion({ column }: { column: FormColumn }) {
   return (
     <div className='flex w-full flex-col items-start justify-start gap-2.5'>
@@ -149,6 +151,9 @@ export function FormQuestion({ column }: { column: FormColumn }) {
             จำเป็นต้องตอบคำถามนี้
           </p>
         </div>
+      ) : null}
+      {UIDataType[column.uidt] === UIDataType.Attachment ? (
+        <FileAttachment onFileSelect={(file) => console.log(file)} />
       ) : null}
     </div>
   )
