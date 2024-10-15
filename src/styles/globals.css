@@ -28,41 +28,41 @@
 }
 
 .text-title {
-  font-size: 20px;
-}
-
-.text-header-1 {
   font-size: 24px;
 }
 
+.text-header-1 {
+  font-size: 26px;
+}
+
 .text-header-2 {
-  font-size: 20px;
+  font-size: 22px;
 }
 
 .text-header-3 {
-  font-size: 18px;
+  font-size: 20px;
 }
 
 .text-subtitle {
-  font-size: 14px;
+  font-size: 18px;
 }
 
 .text-body-1 {
-  font-size: 12px;
+  font-size: 16px;
 }
 
 .text-body-2 {
-  font-size: 10px;
+  font-size: 14px;
   line-height: 12px;
 }
 
 .text-detail {
-  font-size: 10px;
+  font-size: 12px;
 }
 
 @media (min-width: 768px) {
   .text-title {
-    font-size: 24px;
+    font-size: 26px;
   }
 
   .text-header-1 {
@@ -75,23 +75,6 @@
 
   .text-header-3 {
     font-size: 20px;
-  }
-
-  .text-subtitle {
-    font-size: 16px;
-  }
-
-  .text-body-1 {
-    font-size: 14px;
-  }
-
-  .text-body-2 {
-    font-size: 11px;
-    line-height: 13px;
-  }
-
-  .text-detail {
-    font-size: 12px;
   }
 }
 

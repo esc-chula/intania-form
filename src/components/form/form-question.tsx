@@ -11,7 +11,7 @@ export function FormQuestion({ column }: { column: FormColumn }) {
           {column.label}
           {column.required ? <span className='text-red-500'> *</span> : null}
         </h3>
-        <p className='text-subtitle font-light text-gray-600'>
+        <p className='text-body-1 font-light text-gray-600'>
           {column.description}
         </p>
       </div>

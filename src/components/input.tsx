@@ -50,7 +50,7 @@ export function Input({
         pattern={pattern}
         placeholder={placeholder || 'คำตอบ'}
         className={cn(
-          'flex w-full rounded-md border border-default border-neutral-200 px-2 py-1 outline-none transition-all duration-200 focus:border',
+          'text-body-1 flex w-full rounded-md border border-default border-neutral-200 px-2 py-1 outline-none transition-all duration-200 focus:border',
           {
             'border-red-600': error,
             'focus:border-neutral-600': !error,
