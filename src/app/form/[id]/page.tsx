@@ -44,7 +44,7 @@ export default function Page({ params: { id } }: PageProps) {
   }
 
   return (
-    <>
+    <div className='flex size-full flex-col items-center justify-start gap-8 px-5 py-8'>
       <FormHeader form={form} />
       <FormContainer>
         <form
@@ -74,6 +74,6 @@ export default function Page({ params: { id } }: PageProps) {
           </div>
         </form>
       </FormContainer>
-    </>
+    </div>
   )
 }
