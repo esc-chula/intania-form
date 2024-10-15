@@ -7,7 +7,7 @@ export function FormQuestion({ column }: { column: FormColumn }) {
   return (
     <div className='flex w-full flex-col items-start justify-start gap-2.5'>
       <div className='flex flex-col'>
-        <h3 className='text-title2 font-bold text-neutral-900'>
+        <h3 className='text-header-3 font-semibold text-neutral-900'>
           {column.label}
           {column.required ? <span className='text-red-500'> *</span> : null}
         </h3>
