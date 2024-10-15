@@ -61,10 +61,10 @@ export function Input({
           toast.error('กรุณากรอกคำตอบให้ครบ', { id: 'invalid' })
         }}
         className={cn(
-          'flex w-full rounded-md border border-default px-2 py-1 outline-none transition-all duration-200 focus:border-none focus:ring-1 focus:ring-inset',
+          'flex w-full rounded-md border border-default border-neutral-200 px-2 py-1 outline-none transition-all duration-200 focus:border',
           {
-            'border-red-600 focus:ring-red-600': error,
-            'border-neutral-200 focus:ring-neutral-600': !error,
+            'border-red-600': error,
+            'focus:border-neutral-600': !error,
           },
           className
         )}
