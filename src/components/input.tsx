@@ -50,17 +50,17 @@ export function Input({
         pattern={pattern}
         placeholder={placeholder || 'คำตอบ'}
         className={cn(
-          'flex w-full rounded-md border border-default px-2 py-1 outline-none transition-all duration-200 focus:border-none focus:ring-1 focus:ring-inset',
+          'body flex w-full rounded-md border border-neutral-200 px-2 py-1 outline-none transition-all duration-200',
           {
-            'border-red-600 focus:ring-red-600': error,
-            'border-neutral-200 focus:ring-neutral-600': !error,
+            'border-red-600': error,
+            'focus:border-neutral-600': !error,
           },
           className
         )}
         disabled={disabled}
       />
       <p
-        className={cn('text-detail transition-all duration-200', {
+        className={cn('caption-1 transition-all duration-200', {
           'text-red-600': error,
           'text-neutral-400': !error,
         })}

@@ -47,21 +47,6 @@ const config: Config = {
       boxShadow: {
         default: '0px 4px 40px 0px rgba(0, 0, 0, 0.05)',
       },
-      fontSize: {
-        header: [
-          '36px',
-          {
-            fontWeight: '700',
-            lineHeight: '48px',
-          },
-        ],
-        title1: '24px',
-        title2: '20px',
-        subtitle: '18px',
-        body: '16px',
-        detail: '14px',
-        smallest: '12px',
-      },
     },
   },
   plugins: [tailwindcssAnimate],
