@@ -7,11 +7,13 @@ export function FormQuestion({ column }: { column: FormColumn }) {
   return (
     <div className='flex w-full flex-col items-start justify-start gap-2.5'>
       <div className='flex flex-col'>
-        <h3 className='text-header-3 font-semibold text-neutral-900'>
+        <h3 className='headline font-semibold text-neutral-900'>
           {column.label}
-          {column.required ? <span className='text-red-500'> *</span> : null}
+          {column.required ? (
+            <span className='headline text-red-500'> *</span>
+          ) : null}
         </h3>
-        <p className='text-body-1 font-light text-gray-600'>
+        <p className='subhead pt-1 font-light text-gray-600'>
           {column.description}
         </p>
       </div>
@@ -41,8 +43,8 @@ export function FormQuestion({ column }: { column: FormColumn }) {
       ) : null}
       {UIDataType[column.uidt] === UIDataType.Checkbox ? (
         <div className='flex w-full flex-col items-start justify-start'>
-          <label className='relative flex w-full cursor-pointer select-none flex-row-reverse items-center justify-end'>
-            <p className='ml-2 text-black'>ยอมรับ</p>
+          <span className='relative flex w-full cursor-pointer select-none flex-row-reverse items-center justify-end'>
+            <p className='body ml-2 text-black'>ยอมรับ</p>
             <input
               type='checkbox'
               name={column.columnName}
@@ -58,18 +60,19 @@ export function FormQuestion({ column }: { column: FormColumn }) {
                   e.target as HTMLInputElement
                 ).nextElementSibling?.classList.add('hidden')
               }}
+              className='size-4 rounded-md border-neutral-200'
             />
-            <p className='absolute -bottom-8 my-2 hidden w-full text-sm italic text-red-600'>
+            <p className='caption-1 absolute -bottom-8 my-2 hidden w-full italic text-red-600'>
               จำเป็นต้องยอมรับ
             </p>
-          </label>
+          </span>
         </div>
       ) : null}
       {UIDataType[column.uidt] === UIDataType.SingleSelect ? (
         <select
           name={column.columnName}
           required={column.required}
-          className='flex w-full rounded-md border border-neutral-200 px-2 py-1'
+          className='body flex w-full rounded-md border border-neutral-200 px-2 py-1'
         >
           {column.colOptions?.map((option) => (
             <option key={option} value={option}>
@@ -83,7 +86,7 @@ export function FormQuestion({ column }: { column: FormColumn }) {
           <textarea
             name={column.columnName}
             required={column.required}
-            className='flex h-20 w-full resize-none overflow-y-scroll rounded-md border border-neutral-200 px-2 py-1'
+            className='body flex h-20 w-full resize-none overflow-y-scroll rounded-md border border-neutral-200 px-2 py-1'
             onInvalid={(e) => {
               e.preventDefault()
               ;(
@@ -96,7 +99,7 @@ export function FormQuestion({ column }: { column: FormColumn }) {
               )
             }}
           />
-          <p className='my-2 hidden w-full text-sm italic text-red-600'>
+          <p className='caption-1 my-2 hidden w-full italic text-red-600'>
             จำเป็นต้องตอบคำถามนี้
           </p>
         </div>

@@ -63,12 +63,12 @@ export default function Page({ params: { id } }: PageProps) {
           <div className='flex w-full flex-col gap-5'>
             <hr />
             <div className='flex flex-row items-center justify-between'>
-              <button type='reset' className='text-subtitle text-neutral-400'>
+              <button type='reset' className='subhead text-neutral-400'>
                 ล้างฟอร์ม
               </button>
               <button
                 type='submit'
-                className='text-subtitle size-fit rounded-[10px] bg-carmine-500 px-8 py-[10px] text-white'
+                className='subhead size-fit rounded-[10px] bg-carmine-500 px-8 py-[10px] text-white'
               >
                 ส่งคำตอบ
               </button>

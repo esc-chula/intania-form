@@ -27,88 +27,174 @@
   padding: 0;
 }
 
-.text-title {
-  font-size: 24px;
+/* mobile */
+.large-title {
+  font-size: 30px;
+  line-height: 40px;
 }
 
-.text-header-1 {
-  font-size: 26px;
+.title-1 {
+  font-size: 27px;
+  line-height: 33px;
 }
 
-.text-header-2 {
-  font-size: 22px;
+.title-2 {
+  font-size: 21px;
+  line-height: 26px;
 }
 
-.text-header-3 {
-  font-size: 20px;
+.title-3 {
+  font-size: 19px;
+  line-height: 24px;
 }
 
-.text-subtitle {
-  font-size: 18px;
-}
-
-.text-body-1 {
+.headline {
   font-size: 16px;
+  line-height: 21px;
 }
 
-.text-body-2 {
+.body {
+  font-size: 16px;
+  line-height: 21px;
+}
+
+.callout {
+  font-size: 15px;
+  line-height: 20px;
+}
+
+.subhead {
   font-size: 14px;
-  line-height: 12px;
+  line-height: 19px;
 }
 
-.text-detail {
+.footnote {
   font-size: 12px;
+  line-height: 16px;
 }
 
+.caption-1 {
+  font-size: 11px;
+  line-height: 13px;
+}
+
+.caption-2 {
+  font-size: 11px;
+  line-height: 13px;
+}
+
+/* Tablet */
 @media (min-width: 768px) {
-  .text-title {
-    font-size: 26px;
+  .large-title {
+    font-size: 34px;
+    line-height: 41px;
   }
 
-  .text-header-1 {
+  .title-1 {
     font-size: 28px;
+    line-height: 34px;
   }
 
-  .text-header-2 {
-    font-size: 24px;
+  .title-2 {
+    font-size: 22px;
+    line-height: 28px;
   }
 
-  .text-header-3 {
+  .title-3 {
     font-size: 20px;
-  }
-}
-
-@media (min-width: 1024px) {
-  .text-title {
-    font-size: 32px;
+    line-height: 25px;
   }
 
-  .text-header-1 {
-    font-size: 36px;
+  .headline {
+    font-size: 17px;
+    line-height: 22px;
   }
 
-  .text-header-2 {
-    font-size: 28px;
+  .body {
+    font-size: 17px;
+    line-height: 22px;
   }
 
-  .text-header-3 {
-    font-size: 24px;
-  }
-
-  .text-subtitle {
-    font-size: 20px;
-  }
-
-  .text-body-1 {
-    font-size: 18px;
-  }
-
-  .text-body-2 {
+  .callout {
     font-size: 16px;
+    line-height: 21px;
+  }
+
+  .subhead {
+    font-size: 15px;
     line-height: 20px;
   }
 
-  .text-detail {
-    font-size: 14px;
+  .footnote {
+    font-size: 13px;
+    line-height: 18px;
+  }
+
+  .caption-1 {
+    font-size: 12px;
+    line-height: 16px;
+  }
+
+  .caption-2 {
+    font-size: 11px;
+    line-height: 13px;
+  }
+}
+
+/* Desktop */
+@media (min-width: 1024px) {
+  .large-title {
+    font-size: 36px;
+    line-height: 43px;
+  }
+
+  .title-1 {
+    font-size: 30px;
+    line-height: 37px;
+  }
+
+  .title-2 {
+    font-size: 24px;
+    line-height: 30x;
+  }
+
+  .title-3 {
+    font-size: 22px;
+    line-height: 28px;
+  }
+
+  .headline {
+    font-size: 19px;
+    line-height: 24px;
+  }
+
+  .body {
+    font-size: 19px;
+    line-height: 24px;
+  }
+
+  .callout {
+    font-size: 18px;
+    line-height: 23px;
+  }
+
+  .subhead {
+    font-size: 17px;
+    line-height: 22px;
+  }
+
+  .footnote {
+    font-size: 15px;
+    line-height: 20px;
+  }
+
+  .caption-1 {
+    font-size: 14x;
+    line-height: 19px;
+  }
+
+  .caption-2 {
+    font-size: 13px;
+    line-height: 18px;
   }
 }
