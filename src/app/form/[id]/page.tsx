@@ -36,8 +36,6 @@ export default function Page({ params: { id } }: PageProps) {
       const errorData = await response.json()
       toast.error(errorData.error)
       return
-      toast.error(errorData.error)
-      return
     }
     window.location.href = `${process.env.NEXT_PUBLIC_BASE_URL}/form/done`
   }
