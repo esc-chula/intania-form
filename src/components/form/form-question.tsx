@@ -20,7 +20,6 @@ export function FormQuestion({ column }: { column: FormColumn }) {
       {UIDataType[column.uidt] === UIDataType.SingleLineText ? (
         <Input
           type='text'
-          id={column.columnName}
           name={column.columnName}
           required={column.required}
         />
@@ -36,7 +35,6 @@ export function FormQuestion({ column }: { column: FormColumn }) {
       {UIDataType[column.uidt] === UIDataType.Number ? (
         <Input
           type='number'
-          id={column.columnName}
           name={column.columnName}
           required={column.required}
         />
