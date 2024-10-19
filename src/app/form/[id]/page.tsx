@@ -45,7 +45,7 @@ export default function Page({ params: { id } }: PageProps) {
   }
 
   return (
-    <div>
+    <div className='flex w-full flex-col items-center justify-center space-y-4 pb-6'>
       <Toaster position='top-center' reverseOrder={false} />
       <FormHeader form={form} />
       <FormContainer>
