@@ -1,6 +1,5 @@
 import { FormColumn } from '@/types/form'
 import { UIDataType } from '@/types/ui-data'
-import { FormEvent } from 'react'
 import toast from 'react-hot-toast'
 
 import { Input } from '@/components/input'
@@ -47,6 +46,7 @@ export function FormQuestion({ column }: { column: FormColumn }) {
                 ;(
                   e.target as HTMLInputElement
                 ).nextElementSibling?.classList.remove('hidden')
+                toast.error('กรุณากรอกคำตอบให้ครบ', { id: 'invalid' })
               }}
               onInput={(e) => {
                 ;(
@@ -68,10 +68,16 @@ export function FormQuestion({ column }: { column: FormColumn }) {
             className='flex h-10 w-full rounded-md border border-neutral-200 px-2 py-1'
             defaultValue=''
             onInvalid={(e) => {
-              handleOnInvalid(e)
+              e.preventDefault()
+              ;(
+                e.target as HTMLInputElement
+              ).nextElementSibling?.classList.remove('hidden')
+              toast.error('กรุณากรอกคำตอบให้ครบ', { id: 'invalid' })
             }}
             onInput={(e) => {
-              handleOnInput(e)
+              ;(e.target as HTMLInputElement).nextElementSibling?.classList.add(
+                'hidden'
+              )
             }}
           >
             <option disabled value=''>
@@ -95,10 +101,16 @@ export function FormQuestion({ column }: { column: FormColumn }) {
             required={column.required}
             className='flex h-20 w-full resize-none overflow-y-scroll rounded-md border border-neutral-200 px-2 py-1'
             onInvalid={(e) => {
-              handleOnInvalid(e)
+              e.preventDefault()
+              ;(
+                e.target as HTMLInputElement
+              ).nextElementSibling?.classList.remove('hidden')
+              toast.error('กรุณากรอกคำตอบให้ครบ', { id: 'invalid' })
             }}
             onInput={(e) => {
-              handleOnInput(e)
+              ;(e.target as HTMLInputElement).nextElementSibling?.classList.add(
+                'hidden'
+              )
             }}
           />
           <p className='my-2 hidden w-full text-sm italic text-red-600'>
@@ -108,30 +120,4 @@ export function FormQuestion({ column }: { column: FormColumn }) {
       ) : null}
     </div>
   )
-}
-
-const handleOnInvalid = (
-  e:
-    | FormEvent<HTMLInputElement>
-    | FormEvent<HTMLSelectElement>
-    | FormEvent<HTMLTextAreaElement>
-) => {
-  e.preventDefault()
-  const selectElement = e.target as HTMLSelectElement
-  if (selectElement.value === '') {
-    selectElement.nextElementSibling?.classList.remove('hidden')
-    toast.error('กรุณากรอกคำตอบให้ครบ', { id: 'invalid' })
-  }
-  ;(e.target as HTMLInputElement).nextElementSibling?.classList.remove('hidden')
-  toast.error('กรุณากรอกคำตอบให้ครบ', { id: 'invalid' })
-}
-
-const handleOnInput = (
-  e:
-    | FormEvent<HTMLInputElement>
-    | FormEvent<HTMLSelectElement>
-    | FormEvent<HTMLTextAreaElement>
-) => {
-  e.preventDefault()
-  ;(e.target as HTMLInputElement).nextElementSibling?.classList.add('hidden')
 }
