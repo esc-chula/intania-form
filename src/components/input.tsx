@@ -61,7 +61,7 @@ export function Input({
           toast.error('กรุณากรอกคำตอบให้ครบ', { id: 'invalid' })
         }}
         className={cn(
-          'flex w-full rounded-md border border-default border-neutral-200 px-2 py-1 outline-none transition-all duration-200 focus:border',
+          'flex w-full rounded-md border border-default border-neutral-200 px-2 py-1 text-body-1 outline-none transition-all duration-200 focus:border',
           {
             'border-red-600': error,
             'focus:border-neutral-600': !error,
@@ -71,10 +71,13 @@ export function Input({
         disabled={disabled}
       />
       <p
-        className={cn('text-detail transition-all duration-200', {
-          'text-red-600': error,
-          'text-neutral-400': !error,
-        })}
+        className={cn(
+          'text-body-2 italic text-red-600 transition-all duration-200',
+          {
+            'text-red-600': error,
+            'text-neutral-400': !error,
+          }
+        )}
       >
         {error ? errorMessage : description}
       </p>
