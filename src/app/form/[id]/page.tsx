@@ -62,17 +62,19 @@ export default function Page({ params: { id } }: PageProps) {
               <FormQuestion column={column} />
             </div>
           ))}
-          <hr />
-          <div className='flex flex-row items-center justify-between'>
-            <button type='reset' className='text-body text-neutral-400'>
-              ล้างฟอร์ม
-            </button>
-            <button
-              type='submit'
-              className='size-fit rounded-[10px] bg-carmine-500 px-8 py-[10px] text-white'
-            >
-              ส่งคำตอบ
-            </button>
+          <div className='flex w-full flex-col gap-5'>
+            <hr />
+            <div className='flex flex-row items-center justify-between'>
+              <button type='reset' className='text-body-1 text-neutral-400'>
+                ล้างฟอร์ม
+              </button>
+              <button
+                type='submit'
+                className='size-fit rounded-[10px] bg-carmine-500 px-8 py-[10px] text-body-1 text-white'
+              >
+                ส่งคำตอบ
+              </button>
+            </div>
           </div>
         </form>
       </FormContainer>
