@@ -8,11 +8,11 @@ export function FormQuestion({ column }: { column: FormColumn }) {
   return (
     <div className='flex w-full flex-col items-start justify-start gap-2.5'>
       <div className='flex flex-col'>
-        <h3 className='text-header-1 font-bold text-neutral-900'>
+        <h3 className='flex text-subtitle font-bold text-neutral-900'>
           {column.label}
-          {column.required ? <span className='text-red-500'> *</span> : null}
+          {column.required ? <p className='text-red-500'>*</p> : null}
         </h3>
-        <p className='text-subtitle font-light text-gray-600'>
+        <p className='text-body-1 font-light text-gray-600'>
           {column.description}
         </p>
       </div>
@@ -46,6 +46,7 @@ export function FormQuestion({ column }: { column: FormColumn }) {
               type='checkbox'
               name={column.columnName}
               required={column.required}
+              className='size-4 rounded-md'
               onInvalid={(e) => {
                 e.preventDefault()
                 ;(
@@ -59,7 +60,7 @@ export function FormQuestion({ column }: { column: FormColumn }) {
                 ).nextElementSibling?.classList.add('hidden')
               }}
             />
-            <p className='absolute -bottom-8 my-2 hidden w-full text-body-2 italic text-red-600'>
+            <p className='absolute -bottom-10 my-2 hidden w-full text-body-2 italic text-red-600'>
               จำเป็นต้องยอมรับ
             </p>
           </label>
@@ -94,7 +95,7 @@ export function FormQuestion({ column }: { column: FormColumn }) {
               </option>
             ))}
           </select>
-          <p className='absolute -bottom-8 my-2 hidden w-full text-body-2 italic text-red-600'>
+          <p className='absolute -bottom-10 my-2 hidden w-full text-body-2 italic text-red-600'>
             จำเป็นต้องเลือก
           </p>
         </div>
