@@ -1,19 +1,21 @@
 'use client'
 
-import { useForm } from '@/providers/form-provider'
+import { useRouter } from 'next/navigation'
 import { useEffect } from 'react'
 import { Toaster, toast } from 'react-hot-toast'
 
-import { FormContainer } from '@/components/form/form-container'
-import { FormHeader } from '@/components/form/form-header'
-import { FormQuestion } from '@/components/form/form-question'
+import { Box } from '@/components'
+import { Field } from '@/components/form/field'
+
+import { useFormSchema } from '@/providers/form-schema-provider'
 
 interface PageProps {
   params: { id: string }
 }
 
 export default function Page({ params: { id } }: PageProps) {
-  const { form, setID } = useForm()
+  const { formSchema, setID } = useFormSchema()
+  const router = useRouter()
 
   useEffect(() => {
     setID(id)
@@ -37,7 +39,8 @@ export default function Page({ params: { id } }: PageProps) {
       toast.error(errorData.error)
       return
     }
-    window.location.href = `${process.env.NEXT_PUBLIC_BASE_URL}/form/done`
+
+    router.push(`/form/${id}/done`)
   }
 
   const handleReset = (e: React.FormEvent<HTMLFormElement>) => {
@@ -47,19 +50,27 @@ export default function Page({ params: { id } }: PageProps) {
   return (
     <div className='flex w-full flex-col items-center justify-center space-y-4 px-5 pb-6'>
       <Toaster position='top-center' reverseOrder={false} />
-      <FormHeader form={form} />
-      <FormContainer>
+      <Box>
+        <h1 className='text-header-1 font-bold text-neutral-900'>
+          {formSchema.heading}
+        </h1>
+        <hr />
+        <h2 className='text-subtitle text-neutral-500'>
+          {formSchema.subheading}
+        </h2>
+      </Box>
+      <Box>
         <form
           onSubmit={handleSubmit}
           onReset={handleReset}
           className='flex flex-col gap-14'
         >
-          {form.columns.map((column) => (
+          {formSchema.columns.map((column) => (
             <div
-              key={column.order}
+              key={column.id}
               className='flex w-full flex-col items-start gap-2.5'
             >
-              <FormQuestion column={column} />
+              <Field column={column} />
             </div>
           ))}
           <div className='flex w-full flex-col gap-5'>
@@ -77,7 +88,7 @@ export default function Page({ params: { id } }: PageProps) {
             </div>
           </div>
         </form>
-      </FormContainer>
+      </Box>
     </div>
   )
 }

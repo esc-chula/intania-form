@@ -11,7 +11,9 @@
   "arrowParens": "always",
   "importOrder": [
     "^@/components(.*)$",
+    "^@/types(.*)$",
     "^@/lib(.*)$",
+    "^@/providers(.*)$",
     "^@/styles(.*)$",
     "^[./]"
   ],

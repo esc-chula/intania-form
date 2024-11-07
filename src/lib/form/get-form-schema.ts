@@ -1,12 +1,12 @@
-import { Form, FormColumn } from '@/types/form'
+import type { Form } from '@/types/form'
 
 import { getColumnDetail } from './get-column-detail'
-import { getNocoID } from './get-nocoID'
+import { getFormIds } from './get-form-ids'
 
-export const getFormSchema = async (id: string): Promise<Form | Response> => {
-  const tableIdResponse = await getNocoID(id)
+export const getFormSchema = async (customId: string): Promise<Form> => {
+  const tableIdResponse = await getFormIds(customId)
   if (tableIdResponse == null) {
-    return Response.json({ error: 'No form in this name' }, { status: 400 })
+    throw new Error('No form in this name')
   }
   const viewID = tableIdResponse.FormViewID
 
@@ -45,15 +45,7 @@ export const getFormSchema = async (id: string): Promise<Form | Response> => {
   const form: Form = {
     heading: data.heading,
     subheading: data.subheading,
-    columns: data.columns.map((column: FormColumn) => ({
-      label: column.label,
-      description: column.description,
-      uidt: column.uidt,
-      order: column.order,
-      required: column.required,
-      colOptions: column.colOptions,
-      columnName: column.columnName,
-    })),
+    columns: data.columns,
   }
 
   return form

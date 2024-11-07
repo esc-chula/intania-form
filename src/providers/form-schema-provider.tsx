@@ -1,15 +1,16 @@
 'use client'
 
-import type { Form } from '@/types/form'
 import { createContext, useContext, useEffect, useState } from 'react'
 
-interface FormContextType {
-  form: Form
+import type { Form } from '@/types/form'
+
+interface FormSchemaContextType {
+  formSchema: Form
   setID: (id: string) => void
 }
 
-export const FormContext = createContext<FormContextType>({
-  form: {
+export const FormSchemaContext = createContext<FormSchemaContextType>({
+  formSchema: {
     heading: '',
     subheading: '',
     columns: [],
@@ -17,12 +18,12 @@ export const FormContext = createContext<FormContextType>({
   setID: () => {},
 })
 
-export default function FormProvider({
+export function FormSchemaProvider({
   children,
 }: {
   children: React.ReactNode
 }) {
-  const [form, setForm] = useState<Form>({
+  const [formSchema, setFormSchema] = useState<Form>({
     heading: '',
     subheading: '',
     columns: [],
@@ -30,7 +31,7 @@ export default function FormProvider({
   const [id, setID] = useState('')
   useEffect(() => {
     if (!id) return
-    const getForm = async (id: string) => {
+    const getFormSchema = async (id: string) => {
       const response = await fetch(
         `${process.env.NEXT_PUBLIC_BASE_URL}/form/api?id=${id}`,
         {
@@ -39,27 +40,27 @@ export default function FormProvider({
       )
 
       const data = await response.json()
-      setForm(data)
+      setFormSchema(data)
     }
 
-    void getForm(id)
-  }, [id, setForm])
+    void getFormSchema(id)
+  }, [id, setFormSchema])
 
   return (
-    <FormContext.Provider
+    <FormSchemaContext.Provider
       value={{
-        form,
+        formSchema: formSchema,
         setID: (newId: string) => {
           if (newId !== id) setID(newId)
         },
       }}
     >
       {children}
-    </FormContext.Provider>
+    </FormSchemaContext.Provider>
   )
 }
 
-export const useForm = () => {
-  const { form, setID } = useContext(FormContext)
-  return { form, setID }
+export const useFormSchema = () => {
+  const { formSchema, setID } = useContext(FormSchemaContext)
+  return { formSchema, setID }
 }

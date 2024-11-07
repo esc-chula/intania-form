@@ -1,8 +1,8 @@
-import { FormColumn } from '@/types/form'
+import { FormComponent } from '@/components/form/form-component'
 
-import { getFormComponent } from '@/components/form/form-component'
+import type { FormColumn } from '@/types'
 
-export function FormQuestion({ column }: { column: FormColumn }) {
+export function Field({ column }: { column: FormColumn }) {
   return (
     <div className='flex w-full flex-col items-start justify-start gap-2.5'>
       <div className='flex flex-col'>
@@ -14,7 +14,7 @@ export function FormQuestion({ column }: { column: FormColumn }) {
           {column.description}
         </p>
       </div>
-      {getFormComponent(column)}
+      {FormComponent(column)}
     </div>
   )
 }

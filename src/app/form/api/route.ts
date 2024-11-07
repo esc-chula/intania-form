@@ -1,6 +1,6 @@
 import { checkIdParams } from '@/lib/form/check-form'
+import { getFormIds } from '@/lib/form/get-form-ids'
 import { getFormSchema } from '@/lib/form/get-form-schema'
-import { getNocoID } from '@/lib/form/get-nocoID'
 
 export async function GET(request: Request) {
   // checking id
@@ -23,7 +23,7 @@ export async function POST(request: Request) {
 
   const body = await request.json()
 
-  const tableIdResponse = await getNocoID(id)
+  const tableIdResponse = await getFormIds(id)
   if (tableIdResponse === null) {
     return Response.json({ error: 'No matching form name' }, { status: 400 })
   }

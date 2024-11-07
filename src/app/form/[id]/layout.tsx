@@ -1,14 +1,23 @@
-import FormProvider from '@/providers/form-provider'
+import { getFormSchema } from '@/lib/form/get-form-schema'
+
+import { FormSchemaProvider } from '@/providers/form-schema-provider'
+
+export async function generateMetadata({
+  params: { id },
+}: {
+  params: { id: string }
+}) {
+  const form = await getFormSchema(id)
+
+  return {
+    title: form.heading,
+  }
+}
 
 export default async function FormLayout({
   children,
 }: Readonly<{
   children: React.ReactNode
 }>) {
-  return <FormProvider>{children}</FormProvider>
-  return (
-    <div className='flex size-full flex-col items-center justify-start gap-8 px-5 py-8'>
-      <FormProvider>{children}</FormProvider>
-    </div>
-  )
+  return <FormSchemaProvider>{children}</FormSchemaProvider>
 }

@@ -1,13 +1,8 @@
-import { UIDataType } from '@/types/ui-data'
+import type { FormColumn } from '@/types'
 
 export const getColumnDetail = async (
   columnID: string
-): Promise<{
-  label: string
-  uidt: keyof typeof UIDataType
-  columnName: string
-  colOptions?: string[]
-}> => {
+): Promise<Omit<FormColumn, 'description' | 'order' | 'required'>> => {
   const response = await fetch(
     `${process.env.NOCODB_BASE_URL}/api/v2/meta/columns/${columnID}`,
     {
@@ -20,11 +15,15 @@ export const getColumnDetail = async (
   const data = await response.json()
 
   return {
+    id: data.id,
     label: data.title,
     uidt: data.uidt,
-    columnName: data.column_name,
-    colOptions: data.colOptions?.options.map(
-      (option: { title: string }) => option.title
+    name: data.column_name,
+    options: data.colOptions?.options.map(
+      (option: { id: string; title: string }) => ({
+        id: option.id,
+        title: option.title,
+      })
     ),
   }
 }
