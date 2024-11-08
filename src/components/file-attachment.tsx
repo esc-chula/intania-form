@@ -1,50 +1,45 @@
 'use client'
 
 import { useState } from 'react'
+import toast from 'react-hot-toast'
 
 interface FileAttachmentProps {
-  id?: string
   name?: string
   required?: boolean
-  onFileSelect: (file: File | null) => void
   acceptedTypes?: string
   maxSizeMB?: number
 }
 
 export const FileAttachment = ({
-  id,
   name,
   required,
-  onFileSelect,
   acceptedTypes = '',
   maxSizeMB = 5,
 }: FileAttachmentProps): JSX.Element => {
   const [selectedFile, setSelectedFile] = useState<File | null>(null)
-  const [error, setError] = useState<string | null>(null)
 
-  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0]
-    if (file) {
-      if (file.size > maxSizeMB * 1024 * 1024) {
-        setError(`ขนาดของไฟล์ควรไม่เกิน ${maxSizeMB} MB`)
-        setSelectedFile(null)
-        onFileSelect(null)
-        return
-      }
-      setError(null)
-      setSelectedFile(file)
-      onFileSelect(file)
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0]
+    if (!file) return
+
+    if (file.size > maxSizeMB * 1024 * 1024) {
+      toast.error(`File size must be less than ${maxSizeMB}MB`)
+      setSelectedFile(null)
+      return
     }
+
+    setSelectedFile(file)
   }
 
   return (
     <div className='relative flex w-full flex-col'>
       <div className='flex h-40 w-full items-center justify-center rounded-md border'>
         <div className='inline-flex items-center justify-center'>
-          <span className='text-detail text-neutral-400'>Add File(s)</span>
+          <span className='text-detail text-neutral-400'>
+            {selectedFile ? selectedFile.name : 'Select File'}
+          </span>
         </div>
         <input
-          id={id}
           name={name}
           required={required}
           className='absolute inset-0 opacity-0'
@@ -53,12 +48,6 @@ export const FileAttachment = ({
           onChange={handleFileChange}
         />
       </div>
-      {selectedFile && (
-        <p className='my-2 hidden w-full text-sm italic text-red-600'>
-          จำเป็นต้องอัพโหลดไฟล์
-        </p>
-      )}
-      {error && <p className=''>{error}</p>}
     </div>
   )
 }

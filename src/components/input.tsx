@@ -32,11 +32,11 @@ export const Input = ({
   disabled,
   description,
 }: InputProps) => {
-  const [isValid, setIsValid] = useState(false)
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setIsValid(false)
+  const [isValid, setIsValid] = useState(true)
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setIsValid(true)
     if (onChange) {
-      onChange(event)
+      onChange(e)
     }
   }
 
@@ -54,14 +54,14 @@ export const Input = ({
           placeholder={placeholder || 'คำตอบ'}
           onInvalid={(e) => {
             e.preventDefault()
-            setIsValid(true)
+            setIsValid(false)
             toast.error('กรุณากรอกคำตอบให้ครบ', { id: 'invalid' })
           }}
           className={cn(
             'flex w-full rounded-md border border-default border-neutral-200 px-2 py-1 outline-none transition-all duration-200 focus:border',
             {
-              'border-red-600': isValid,
-              'focus:border-neutral-600': !isValid,
+              'border-red-600': !isValid,
+              'focus:border-neutral-600': isValid,
             },
             className
           )}
@@ -71,11 +71,11 @@ export const Input = ({
           {description}
         </p>
       </div>
-      {isValid && (
+      {!isValid ? (
         <p className='absolute -bottom-8 w-full text-body-2 italic text-red-600'>
           จำเป็นต้องตอบคำถามนี้
         </p>
-      )}
+      ) : null}
     </div>
   )
 }

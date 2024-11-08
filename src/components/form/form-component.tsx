@@ -32,14 +32,7 @@ export const FormComponent = (column: FormColumn): React.ReactNode => {
     case 'LongText':
       return <Textarea column={column} />
     case 'Attachment':
-      return (
-        <FileAttachment
-          id={column.name}
-          name={column.name}
-          required={column.required}
-          onFileSelect={() => {}}
-        />
-      )
+      return <FileAttachment name={column.name} required={column.required} />
     default:
       return (
         <p className='text-body-2 font-light italic text-red-600'>
