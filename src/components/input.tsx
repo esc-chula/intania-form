@@ -19,7 +19,7 @@ interface InputProps {
   description?: string
 }
 
-export function Input({
+export const Input = ({
   id,
   name,
   type,
@@ -31,7 +31,7 @@ export function Input({
   className,
   disabled,
   description,
-}: InputProps) {
+}: InputProps) => {
   const [isValid, setIsValid] = useState(false)
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setIsValid(false)

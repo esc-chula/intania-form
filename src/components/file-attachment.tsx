@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState } from 'react'
+import { useState } from 'react'
 
 interface FileAttachmentProps {
   id?: string
@@ -11,14 +11,14 @@ interface FileAttachmentProps {
   maxSizeMB?: number
 }
 
-export function FileAttachment({
+export const FileAttachment = ({
   id,
   name,
   required,
   onFileSelect,
   acceptedTypes = '',
   maxSizeMB = 5,
-}: FileAttachmentProps) {
+}: FileAttachmentProps): JSX.Element => {
   const [selectedFile, setSelectedFile] = useState<File | null>(null)
   const [error, setError] = useState<string | null>(null)
 
