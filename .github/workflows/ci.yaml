@@ -6,7 +6,7 @@ on:
     branches:
       - main
     tags:
-      - "v*"
+      - 'v*'
 
 env:
   IMAGE_NAME: ghcr.io/esc-chula/intania-form
