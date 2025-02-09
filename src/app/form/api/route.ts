@@ -27,7 +27,7 @@ export async function POST(request: Request) {
   if (tableIdResponse === null) {
     return Response.json({ error: 'No matching form name' }, { status: 400 })
   }
-  const tableID = tableIdResponse.TableID
+  const tableID = tableIdResponse.TableId
 
   // post to nocodb
   const response = await fetch(

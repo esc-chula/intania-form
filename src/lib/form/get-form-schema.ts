@@ -8,7 +8,7 @@ export const getFormSchema = async (customId: string): Promise<Form> => {
   if (tableIdResponse == null) {
     throw new Error('No form in this name')
   }
-  const viewID = tableIdResponse.FormViewID
+  const viewID = tableIdResponse.FormViewId
 
   const response = await fetch(
     `${process.env.NOCODB_BASE_URL}/api/v2/meta/forms/${viewID}`,

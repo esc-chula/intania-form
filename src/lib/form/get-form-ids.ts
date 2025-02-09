@@ -1,8 +1,8 @@
 interface FormIds {
   Id: string
   CustomId: string
-  TableID: string
-  FormViewID: string
+  TableId: string
+  FormViewId: string
 }
 
 export const getFormIds = async (CustomId: string): Promise<FormIds | null> => {
