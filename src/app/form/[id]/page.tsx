@@ -1,6 +1,5 @@
 'use client'
 
-import { env } from 'next-runtime-env'
 import { useRouter } from 'next/navigation'
 import { useEffect } from 'react'
 import { Toaster, toast } from 'react-hot-toast'
@@ -27,13 +26,10 @@ export default function Page({ params: { id } }: PageProps) {
     const formData = new FormData(e.currentTarget)
     const data = Object.fromEntries(formData.entries())
 
-    const response = await fetch(
-      `${env('NEXT_PUBLIC_BASE_URL')}/form/api?id=${id}`,
-      {
-        method: 'POST',
-        body: JSON.stringify(data),
-      }
-    )
+    const response = await fetch(`/form/api?id=${id}`, {
+      method: 'POST',
+      body: JSON.stringify(data),
+    })
 
     if (!response.ok) {
       const errorData = await response.json()

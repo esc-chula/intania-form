@@ -1,6 +1,5 @@
 'use client'
 
-import { env } from 'next-runtime-env'
 import { createContext, useContext, useEffect, useState } from 'react'
 
 import type { Form } from '@/types/form'
@@ -33,12 +32,9 @@ export function FormSchemaProvider({
   useEffect(() => {
     if (!id) return
     const getFormSchema = async (id: string) => {
-      const response = await fetch(
-        `${env('NEXT_PUBLIC_BASE_URL')}/form/api?id=${id}`,
-        {
-          next: { revalidate: 60 },
-        }
-      )
+      const response = await fetch(`/form/api?id=${id}`, {
+        next: { revalidate: 60 },
+      })
 
       const data = await response.json()
       setFormSchema(data)
