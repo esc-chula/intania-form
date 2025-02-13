@@ -1,3 +1,6 @@
+'use client'
+
+import { useState } from 'react'
 import toast from 'react-hot-toast'
 
 import type { FormColumn } from '@/types'
@@ -7,6 +10,8 @@ interface SingleSelectProps {
 }
 
 export const SingleSelect = ({ column }: SingleSelectProps): JSX.Element => {
+  const [isValid, setIsValid] = useState(true)
+
   return (
     <div className='relative flex w-full'>
       <select
@@ -16,7 +21,7 @@ export const SingleSelect = ({ column }: SingleSelectProps): JSX.Element => {
         defaultValue=''
         onInvalid={(e) => {
           e.preventDefault()
-
+          setIsValid(false)
           toast.error('กรุณากรอกคำตอบให้ครบ', { id: 'invalid' })
         }}
       >
@@ -29,9 +34,11 @@ export const SingleSelect = ({ column }: SingleSelectProps): JSX.Element => {
           </option>
         ))}
       </select>
-      <p className='absolute -bottom-10 my-2 hidden w-full text-body-2 italic text-red-600'>
-        จำเป็นต้องเลือก
-      </p>
+      {!isValid ? (
+        <p className='absolute -bottom-10 my-2 w-full text-body-2 italic text-red-600'>
+          จำเป็นต้องเลือก
+        </p>
+      ) : null}
     </div>
   )
 }

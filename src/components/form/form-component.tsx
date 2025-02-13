@@ -1,4 +1,10 @@
-import { Checkbox, Input, SingleSelect, Textarea } from '@/components'
+import {
+  Checkbox,
+  FileAttachment,
+  Input,
+  SingleSelect,
+  Textarea,
+} from '@/components'
 
 import type { FormColumn } from '@/types'
 
@@ -25,6 +31,8 @@ export const FormComponent = (column: FormColumn): React.ReactNode => {
       return <SingleSelect column={column} />
     case 'LongText':
       return <Textarea column={column} />
+    case 'Attachment':
+      return <FileAttachment name={column.name} required={column.required} />
     default:
       return (
         <p className='text-body-2 font-light italic text-red-600'>
